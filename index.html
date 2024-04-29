@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> Stock Market</title>
+</head>
+<link href="https://fonts.googleapis.com/css?family=Baloo+Bhai&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        font-family: 'Baloo Bhai', cursive;
+        color: white;
+        margin: 0px;
+        padding: 0px;
+        background: url('img/bg.jpg');
+    }
+
+    .left {
+        display: inline-block;
+        position: absolute;
+        left: 60px;
+        top: 20px;
+    }
+
+    .left img {
+        width: 136px;
+        filter: invert(100%);
+    }
+
+    .left div {
+        line-height: 89px;
+        font-size: 36px;
+        text-align: center;
+    }
+
+    .mid {
+        display: block;
+        width: 36%;
+        margin: 29px auto;
+    }
+
+    .right {
+        position: absolute;
+        right: 34px;
+        top: 43px;
+        display: inline-block;
+    }
+
+    .navbar {
+        display: inline-block;
+    }
+
+    .navbar li {
+        display: inline-block;
+        font-size: 25px;
+    }
+
+    .navbar li a {
+        color: white;
+        text-decoration: none;
+        padding: 34px 23px;
+
+    }
+
+    .navbar li a:hover,
+    .navbar li a.active {
+        text-decoration: underline;
+        color: grey;
+
+    }
+
+    .btn {
+        font-family: 'Baloo Bhai', cursive;
+        margin: 0px 9px;
+        background-color: black;
+        color: white;
+        padding: 4px 14px;
+        border: 2px solid grey;
+        border-radius: 10px;
+        font-size: 20px;
+        cursor: pointer;
+        height: 50px
+    }
+
+    .sub {
+        font-family: 'Baloo Bhai', cursive;
+        margin: 20px 35px;
+        background-color: black;
+        color: white;
+        padding: 4px 14px;
+        border: 2px solid grey;
+        border-radius: 10px;
+        font-size: 20px;
+        cursor: pointer;
+        width: 400px;
+        height: 45px
+    }
+
+    .btn:hover {
+        background-color: rgb(31, 30, 30);
+    }
+
+    .container {
+        border: 6px solid white;
+        border-radius: 28px;
+        margin: 180px 101px;
+        padding: 50px;
+        width: 23%;
+
+
+    }
+
+    .form-group input,
+    select {
+        font-family: 'Baloo Bhai', cursive;
+        text-align: center;
+        display: block;
+        width: 400px;
+        padding: 1px;
+        border: 2px solid black;
+        margin: 11px auto;
+        font-size: 25px;
+        border-radius: 8px;
+    }
+
+    .container h1 {
+        text-align: center;
+    }
+
+
+
+    #companyImage {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 700px;
+        margin: 250px 250px;
+        width: 1000px;
+        height: 50px;
+
+
+    }
+
+    #companyImage img {
+        border: 5px solid black;
+        border-radius: 8px;
+        width: 1000px;
+        height: auto;
+    }
+</style>
+
+<body>
+    <header class="header">
+        <!-- Left box for logo -->
+        <div class="left">
+            <div>Predictor</div>
+        </div>
+        <!-- Mid box for navbar -->
+        <div class="mid">
+            <ul class="navbar">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="models.html">Prediction Models</a></li>
+                <li><a href="about.html">About Us</a></li>
+            </ul>
+        </div>
+
+        <!-- Right box for buttons -->
+        <div class="right">
+            <button class="btn" id="callButton">Call Us Now</button>
+            <button class="btn" id="emailButton">Email Us</button>
+        </div>
+    </header>
+    <div class="container">
+        <form id="companyForm" action="" method="get">
+            <h1>Choose your Model</h1>
+            <div class="form-group">
+                <select name="myCompany" id="company">
+                    <option value="linear">Linear Regression</option>
+                    <option value="svm">Support Vector Machine</option>
+                    <option value="lstm">Long Short Term Memory</option>
+                    <option value="random">Random Forest Regression</option>
+                    <option value="gbm">Gradient Boosting Machine</option>
+                </select>
+            </div>
+            <h1>Choose the Company</h1>
+            <div class="form-group">
+                <select name="myCompany" id="company2">
+                    <option value="tcs">TCS</option>
+                    <option value="hdfc">HDFC BANK</option>
+                    <option value="asian">Asianpaints</option>
+                    <option value="maruti">Maruti</option>
+                    <option value="ongc">ONGC</option>
+                </select>
+            </div>
+            <button type="submit" class="sub">Submit</button>
+        </form>
+    </div>
+
+    <div id="companyImage"></div>
+
+    <script>
+        document.getElementById("companyForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            var selectedModel = document.getElementById("company").value;
+            var selectedCompany = document.getElementById("company2").value;
+
+            
+            var imageUrl = getImageUrl(selectedModel, selectedCompany);
+
+            // Update the image source
+            document.getElementById("companyImage").innerHTML = '<img src="' + imageUrl + '" alt="' + selectedCompany + '">';
+        });
+
+        function getImageUrl(model, company) {
+            var modelMappings = {
+                linear: "linear_",
+                svm: "svm_",
+                lstm: "lstm_",
+                random: "random_",
+                gbm: "gbm_"
+            };
+
+            var companyMappings = {
+                tcs: "tcs",
+                hdfc: "hdfc",
+                asian: "asian",
+                maruti: "maruti",
+                ongc: "ongc"
+            };
+
+            var modelPrefix = modelMappings[model];
+            var companySuffix = companyMappings[company];
+
+            return "img/" + modelPrefix + companySuffix + ".jpg";
+        }
+
+
+        document.getElementById("callButton").addEventListener("click", function () {
+            var phoneNumber = generatePhoneNumber();
+            alert("Call us now at: " + phoneNumber);
+        });
+
+        function generatePhoneNumber() {
+            var phoneNumber = "+91";
+            phoneNumber += Math.floor(7000000000 + Math.random() * 9000000000);
+            return phoneNumber;
+        }
+
+        document.getElementById("emailButton").addEventListener("click", function () {
+            var emailAddress = generateEmailAddress();
+            alert("Email us at: " + emailAddress);
+        });
+
+
+        function generateEmailAddress() {
+            var chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+            var emailAddress = "";
+            for (var i = 0; i < 10; i++) {
+                emailAddress += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            emailAddress += "@gmail.com";
+            return emailAddress;
+        }
+
+
+    </script>
+</body>
+
+</html>

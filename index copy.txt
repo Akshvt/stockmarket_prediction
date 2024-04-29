@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Stock Market</title>
+</head>
+<link href="https://fonts.googleapis.com/css?family=Baloo+Bhai&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        font-family: 'Baloo Bhai', cursive;
+        color: white;
+        margin: 0px;
+        padding: 0px;
+        background: url('img/bg.jpg');
+    }
+
+    .left {
+        display: inline-block;
+        position: absolute;
+        left: 60px;
+        top: 20px;
+    }
+
+    .left img {
+        width: 136px;
+        filter: invert(100%);
+    }
+
+    .left div {
+        line-height: 89px;
+        font-size: 36px;
+        text-align: center;
+    }
+
+    .mid {
+        display: block;
+        width: 36%;
+        margin: 29px auto;
+    }
+
+    .right {
+        position: absolute;
+        right: 34px;
+        top: 43px;
+        display: inline-block;
+    }
+
+    .navbar {
+        display: inline-block;
+    }
+
+    .navbar li {
+        display: inline-block;
+        font-size: 25px;
+    }
+
+    .navbar li a {
+        color: white;
+        text-decoration: none;
+        padding: 34px 23px;
+
+    }
+
+    .navbar li a:hover,
+    .navbar li a.active {
+        text-decoration: underline;
+        color: grey;
+
+    }
+
+    .btn {
+        font-family: 'Baloo Bhai', cursive;
+        margin: 0px 9px;
+        background-color: black;
+        color: white;
+        padding: 4px 14px;
+        border: 2px solid grey;
+        border-radius: 10px;
+        font-size: 20px;
+        cursor: pointer;
+        height: 50px
+    }
+
+    .sub {
+        font-family: 'Baloo Bhai', cursive;
+        margin: 20px 35px;
+        background-color: black;
+        color: white;
+        padding: 4px 14px;
+        border: 2px solid grey;
+        border-radius: 10px;
+        font-size: 20px;
+        cursor: pointer;
+        width: 400px;
+        height: 45px
+    }
+
+    .btn:hover {
+        background-color: rgb(31, 30, 30);
+    }
+
+    .container {
+        border: 6px solid white;
+        border-radius: 28px;
+        margin: 200px 101px;
+        padding: 50px;
+        width: 23%;
+    }
+
+    .form-group input,
+    select {
+        font-family: 'Baloo Bhai', cursive;
+        text-align: center;
+        display: block;
+        width: 400px;
+        padding: 1px;
+        border: 2px solid black;
+        margin: 11px auto;
+        font-size: 25px;
+        border-radius: 8px;
+    }
+
+    .container h1 {
+        text-align: center;
+    }
+
+    #companyImage {
+        border: 5px solid black;
+        border-radius: 8px;
+        width: 1000px;
+        height: auto;
+        margin: 50px auto;
+    }
+</style>
+
+<body>
+    <header class="header">
+        <!-- Left box for logo -->
+        <div class="left">
+            <div>Predictor</div>
+        </div>
+        <!-- Mid box for navbar -->
+        <div class="mid">
+            <ul class="navbar">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">Prediction Models</a></li>
+                <li><a href="#">About Us</a></li>
+            </ul>
+        </div>
+
+        <!-- Right box for buttons -->
+        <div class="right">
+            <button class="btn" id="callButton">Call Us Now</button>
+            <button class="btn" id="emailButton">Email Us</button>
+        </div>
+    </header>
+    <div class="container">
+        <form id="companyForm">
+            <h1>Enter Year</h1>
+            <div class="form-group">
+                <input type="number" id="year" name="year" min="1900" max="2100" placeholder="Enter Year">
+            </div>
+            <h1>Choose your Model</h1>
+            <div class="form-group">
+                <select name="myCompany" id="company">
+                    <option value="linear">Linear Regression</option>
+                    <option value="svm">SVM</option>
+                    <option value="lstm">LSTM</option>
+                    <option value="random">Random Forest</option>
+                    <option value="gbm">Gradient Boosting Machine</option>
+                </select>
+            </div>
+            <h1>Choose the Company</h1>
+            <div class="form-group">
+                <select name="myCompany" id="company2">
+                    <option value="company1">Company 1</option>
+                    <option value="company2">Company 2</option>
+                    <option value="company3">Company 3</option>
+                    <option value="company4">Company 4</option>
+                    <option value="company5">Company 5</option>
+                </select>
+            </div>
+            <button type="submit" class="sub">Submit</button>
+        </form>
+    </div>
+
+    <div id="companyImage"></div>
+
+    <script>
+        document.getElementById("companyForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            var selectedYear = document.getElementById("year").value;
+            var selectedModel = document.getElementById("company").value;
+            var selectedCompany = document.getElementById("company2").value;
+
+            // Prepare data to send to the backend
+            var requestData = {
+                year: selectedYear,
+                model: selectedModel,
+                company: selectedCompany
+            };
+
+            // Send an AJAX POST request to the backend
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "backend_endpoint_url_here", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        var responseData = JSON.parse(xhr.responseText);
+                        var imageUrl = responseData.imageUrl; // Assuming the response contains the image URL
+                        // Update the image source
+                        document.getElementById("companyImage").innerHTML = '<img src="' + imageUrl + '" alt="' + selectedCompany + '">';
+                    } else {
+                        console.error("Error: ", xhr.status);
+                    }
+                }
+            };
+            xhr.send(JSON.stringify(requestData));
+        });
+
+        document.getElementById("callButton").addEventListener("click", function () {
+            var phoneNumber = generatePhoneNumber();
+            alert("Call us now at: " + phoneNumber);
+        });
+
+        function generatePhoneNumber() {
+            var phoneNumber = "+91"; 
+            phoneNumber += Math.floor(7000000000 + Math.random() * 9000000000); // 
+            return phoneNumber;
+        }
+
+        document.getElementById("emailButton").addEventListener("click", function () {
+            var emailAddress = generateEmailAddress();
+            alert("Email us at: " + emailAddress);
+        });
+
+
+        function generateEmailAddress() {
+            var chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+            var emailAddress = "";
+            for (var i = 0; i < 10; i++) {
+                emailAddress += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            emailAddress += "@gmail.com";
+            return emailAddress;
+        }
+
+
+    </script>
+</body>
+
+</html>

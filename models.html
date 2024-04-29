@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> Stock Market</title>
+</head>
+<link href="https://fonts.googleapis.com/css?family=Baloo+Bhai&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        font-family: 'Baloo Bhai', cursive;
+        color: white;
+        margin: 0px;
+        padding: 0px;
+        background: url('img/bg.jpg');
+        background-color: black;
+        backdrop-filter: blur(15px);
+    }
+
+    .left {
+        display: inline-block;
+        position: absolute;
+        left: 60px;
+        top: 20px;
+    }
+
+    .left img {
+        width: 136px;
+        filter: invert(100%);
+    }
+
+    .left div {
+        line-height: 89px;
+        font-size: 36px;
+        text-align: center;
+    }
+
+    .mid {
+        display: block;
+        width: 36%;
+        margin: 29px auto;
+    }
+
+    .right {
+        position: absolute;
+        right: 34px;
+        top: 43px;
+        display: inline-block;
+    }
+
+    .navbar {
+        display: inline-block;
+    }
+
+    .navbar li {
+        display: inline-block;
+        font-size: 25px;
+    }
+
+    .navbar li a {
+        color: white;
+        text-decoration: none;
+        padding: 34px 23px;
+
+    }
+
+    .navbar li a:hover,
+    .navbar li a.active {
+        text-decoration: underline;
+        color: grey;
+
+    }
+
+    .btn {
+        font-family: 'Baloo Bhai', cursive;
+        margin: 0px 9px;
+        background-color: black;
+        color: white;
+        padding: 4px 14px;
+        border: 2px solid grey;
+        border-radius: 10px;
+        font-size: 20px;
+        cursor: pointer;
+        height: 50px
+    }
+
+    .btn:hover {
+        background-color: rgb(31, 30, 30);
+    }
+
+    .info {
+        margin: 50px 20%;
+        text-align: justify;
+    }
+
+    .title {
+        font-size: 3em;
+        text-decoration: underline;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .points {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
+
+    .custom-color {
+        color: #ff7f0e;
+        /* You can use any color code or color name */
+    }
+
+    .info img {
+        display: block;
+        margin: 20px auto;
+        max-width: 80%;
+    }
+</style>
+
+<body>
+    <header class="header">
+        <!-- Left box for logo -->
+        <div class="left">
+            <div>Models</div>
+        </div>
+        <!-- Mid box for navbar -->
+        <div class="mid">
+            <ul class="navbar">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="models.html">Prediction Models</a></li>
+                <li><a href="about.html">About Us</a></li>
+            </ul>
+        </div>
+
+        <!-- Right box for buttons -->
+        <div class="right">
+            <button class="btn" id="callButton">Call Us Now</button>
+            <button class="btn" id="emailButton">Email Us</button>
+        </div>
+    </header>
+    <div class="info">
+        <h1 class="title">Linear Regression</h1>
+        <p class="points">
+            ➞ Linear regression is a statistical method used to model the relationship between a dependent variable and
+            one or more independent variables by fitting a linear equation to observed data.
+        </p>
+        <p class="points">
+            ➞ The goal is to find the best-fitting line that minimizes the sum of squared differences between the
+            observed and predicted values.
+        </p>
+        <p class="points">
+            ➞ The equation of the line is represented as y = mx + b, where y is the dependent variable, x is the
+            independent variable, m is the slope, and b is the y-intercept.
+        </p>
+        <img src="img/linear_tcs.jpg" alt="">
+    </div>
+
+    <!-- Additional Content for Support Vector Machine (SVM) -->
+    <div class="info">
+        <h1 class="title">Support Vector Machine (SVM)</h1>
+        <p class="points">
+            ➞ SVM is a supervised machine learning algorithm used for classification and regression tasks. It works by
+            finding the optimal hyperplane that best separates data points into different classes or predicts continuous
+            outcomes.
+        </p>
+        <p class="points">
+            ➞ SVM aims to maximize the margin between classes while minimizing classification errors. It achieves this
+            by identifying support vectors, which are data points closest to the decision boundary.
+        </p>
+        <p class="points">
+            ➞ SVM can handle linear and non-linear relationships. It's effective for high-dimensional data and offers
+            robust performance even with limited training samples.
+        </p>
+        <img src="img/svm_tcs.jpg" alt="">
+    </div>
+
+    <!-- Additional Content for Support Vector Machine (LTSM) -->
+    <div class="info">
+        <h1 class="title">Long Short Term Memory (LSTM)</h1>
+        <p class="points">
+            ➞ LSTM is a type of recurrent neural network architecture designed to model sequential data and overcome the
+            vanishing gradient problem. It utilizes a memory cell with gated units, including input, output, and forget
+            gates, to retain information over long sequences.
+        </p>
+        <p class="points">
+            ➞ LSTMs can capture long-range dependencies and handle time lags in data, making them well-suited for tasks
+            such as time series prediction or stock prediction.
+        </p>
+        <p class="points">
+            ➞ LSTMs can effectively learn and remember patterns in sequential data, making them a powerful tool for
+            sequential modeling and prediction tasks.
+        </p>
+        <img src="img/lstm_tcs.jpg" alt="">
+    </div>
+
+    <!-- Additional Content for Random forest Regression -->
+    <div class="info">
+        <h1 class="title">Random Forest Regression</h1>
+        <p class="points">
+            ➞ Random Forest Regression is a supervised learning algorithm that utilizes an ensemble of decision trees to
+            make predictions. It builds multiple decision trees and merges their predictions to improve accuracy and
+            prevent overfitting.
+        </p>
+        <p class="points">
+            ➞ Each decision tree in the random forest is trained on a random subset of the training data and selects a
+            random subset of features at each split. This randomness helps to create diverse trees and reduce
+            correlation among them.
+        </p>
+        <p class="points">
+            ➞ Random Forest Regression is effective for both regression and classification tasks. It's robust to
+            outliers and noise in the data and requires minimal hyperparameter tuning. It's commonly used in various
+            domains, including finance, healthcare, and ecology.
+        </p>
+        <img src="img/random_tcs.jpg" alt="">
+    </div>
+
+    <!-- Additional Content for GBM -->
+    <div class="info">
+        <h1 class="title">Gradient Boosting Machine (GBM)</h1>
+        <p class="points">
+            ➞ It is a powerful ensemble learning technique that builds a strong predictive model by sequentially adding
+            weak learners, usually decision trees, to correct the errors of the previous models.
+        </p>
+        <p class="points">
+            ➞ It minimizes a loss function by optimizing the model's predictions against the true values. GBM trains
+            each subsequent model to focus on the mistakes made by the previous ones, gradually improving accuracy.
+        </p>
+        <p class="points">
+            ➞ GBM is highly effective in handling complex relationships in data and is less prone to overfitting. It's
+            widely used in regression and classification tasks due to its robustness and performance.
+        </p>
+        <img src="img/gbm_tcs.jpg" alt="">
+    </div>
+
+
+    <script>
+        document.getElementById("callButton").addEventListener("click", function () {
+            var phoneNumber = generatePhoneNumber();
+            alert("Call us now at: " + phoneNumber);
+        });
+
+        function generatePhoneNumber() {
+            var phoneNumber = "+91";
+            phoneNumber += Math.floor(7000000000 + Math.random() * 9000000000);
+            return phoneNumber;
+        }
+
+        document.getElementById("emailButton").addEventListener("click", function () {
+            var emailAddress = generateEmailAddress();
+            alert("Email us at: " + emailAddress);
+        });
+
+
+        function generateEmailAddress() {
+            var chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+            var emailAddress = "";
+            for (var i = 0; i < 10; i++) {
+                emailAddress += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            emailAddress += "@gmail.com";
+            return emailAddress;
+        }
+
+    </script>
+</body>
+
+</html>
